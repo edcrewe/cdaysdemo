@@ -1,0 +1,25 @@
+syntax = "proto3";
+package cdaysdemo.v1;
+option go_package = "generated/go/cdaysdemo/v1";
+
+
+import "google/api/annotations.proto";
+import "google/api/httpbody.proto";
+
+ message StringMessage {
+    string file_name = 1 [(buf.validate.field).required = true];
+ }
+
+service DemoService {
+  rpc GetCSVFile(StringMessage) returns (google.api.HttpBody) {
+    option (google.api.http) = {
+        get : "/v1/example/{file_name}"
+    }; 
+  }
+
+  rpc StreamCSVFile(StringMessage) returns (stream google.api.HttpBody) {
+    option (google.api.http) = {
+        get : "/v1/example/{file_name}"
+    }; 
+  }
+}

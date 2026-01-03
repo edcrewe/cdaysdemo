@@ -30,3 +30,8 @@ go.work.sum
 # Editor/IDE
 # .idea/
 # .vscode/
+
+# Generated and downloaded files
+cmd/server/sample_big.csv
+generated/
+googleapis/
