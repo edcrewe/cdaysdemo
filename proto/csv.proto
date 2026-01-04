@@ -5,6 +5,7 @@ option go_package = "generated/go/cdaysdemo/v1";
 
 import "google/api/annotations.proto";
 import "google/api/httpbody.proto";
+import "buf/validate/validate.proto";
 
  message StringMessage {
     string file_name = 1 [(buf.validate.field).required = true];
