@@ -14,13 +14,13 @@ import "buf/validate/validate.proto";
 service DemoService {
   rpc GetCSVFile(StringMessage) returns (google.api.HttpBody) {
     option (google.api.http) = {
-        get : "/v1/example/{file_name}"
+        get : "/v1/plain/{file_name}"
     }; 
   }
 
   rpc StreamCSVFile(StringMessage) returns (stream google.api.HttpBody) {
     option (google.api.http) = {
-        get : "/v1/example/{file_name}"
+        get : "/v1/stream/{file_name}"
     }; 
   }
 }
