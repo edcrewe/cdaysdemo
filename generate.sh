@@ -3,7 +3,7 @@
 # Create directory for Google API
 rm -fr generated
 mkdir -p googleapis/google/api
-mkdir -p generated/go
+mkdir -p generated/go/v1
 
 # Download the required proto files
 curl -o googleapis/google/api/annotations.proto \
@@ -18,4 +18,4 @@ rm protovalidate.tar.gz
 rm -fr protovalidate-testing
 
 # Generate gRPC service code
-protoc -I=googleapis -I=protovalidate --proto_path=proto --go_out=./generated/go  --go_opt paths=source_relative --go-grpc_out=./generated/go --go-grpc_opt paths=source_relative csv.proto
+protoc -I=googleapis -I=protovalidate --proto_path=proto --go_out=./generated/go/v1  --go_opt paths=source_relative --go-grpc_out=./generated/go/v1 --go-grpc_opt paths=source_relative csv.proto

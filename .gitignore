@@ -33,6 +33,5 @@ go.work.sum
 
 # Generated and downloaded files
 cmd/server/sample_big.csv
-generated/
 googleapis/
 protovalidate/

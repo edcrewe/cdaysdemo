@@ -8,15 +8,13 @@ import (
 	"net"
 	"os"
 
+	"google.golang.org/genproto/googleapis/api/httpbody"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 
 	"embed"
 
-	"google.golang.org/genproto/googleapis/api/http"
-	"google.golang.org/genproto/googleapis/api/httpbody"
-
-	api_v1 "github.com/my-proto-pkg/generated/go/public/v1"
+	api_v1 "github.com/edcrewe/cdaysdemo/generated/go/v1"
 )
 
 //go:embed *.csv
