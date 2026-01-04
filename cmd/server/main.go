@@ -26,19 +26,19 @@ type server struct {
 
 // GetCSVFile to return a CSV file via gRPC as HttpBody
 func (s *server) GetCsvFile(ctx context.Context, req api_v1.StringMessage) (*httpbody.HttpBody, error) {
-	csvData, err := EmbedFS.ReadFile(req.Value)
+	csvData, err := EmbedFS.ReadFile(req.FileName)
 	if err != nil {
 		return nil, err
 	}
-	return &http.HttpBody{
+	return &httpbody.HttpBody{
 		ContentType: "text/csv",
 		Data:        csvData,
 	}, nil
 }
 
 // StreamCsvFile to stream large CSV files via HttpBody
-func (s *server) StreamCsvFile(req *api_v1.StringMessage, responseStream api_v1.MyProto_StreamCsvFileServer) error {
-	f, err := os.Open(req.Value)
+func (s *server) StreamCsvFile(req *api_v1.StringMessage, responseStream api_v1.DemoService_StreamCSVFileServer) error {
+	f, err := os.Open(req.FileName)
 	if err != nil {
 		return nil
 	}
@@ -50,7 +50,7 @@ func (s *server) StreamCsvFile(req *api_v1.StringMessage, responseStream api_v1.
 	for {
 		n, err := r.Read(buf)
 		if n > 0 {
-			resp := &api_v1.HttpBody{
+			resp := &httpbody.HttpBody{
 				ContentType: "text/csv",
 				Data:        buf[:n],
 			}
