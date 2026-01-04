@@ -1,4 +1,4 @@
-module cdaysdemo
+module github.com/edcrewe/cdaysdemo
 
 go 1.24.11
 
@@ -15,5 +15,3 @@ require (
 	golang.org/x/text v0.31.0 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20251213004720-97cd9d5aeac2 // indirect
 )
-
-// replace github.com/edcrewe/cdaysdemo/generated/go => ../cdaysdemo/generated/go
