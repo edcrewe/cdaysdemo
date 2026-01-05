@@ -3,7 +3,9 @@ package main
 import (
 	"bufio"
 	"context"
+	"fmt"
 	"io"
+
 	"log"
 	"net"
 	"os"
@@ -40,7 +42,7 @@ func (s *server) GetCsvFile(ctx context.Context, req api_v1.StringMessage) (*htt
 func (s *server) StreamCsvFile(req *api_v1.StringMessage, responseStream api_v1.DemoService_StreamCSVFileServer) error {
 	f, err := os.Open(req.FileName)
 	if err != nil {
-		return nil
+		return err
 	}
 	defer f.Close()
 
@@ -72,21 +74,22 @@ func main() {
 	// Initialize server
 	srv := &server{}
 
-	// Start gRPC server
-	go func() {
-		lis, err := net.Listen("tcp", ":9090")
-		if err != nil {
-			log.Fatalf("failed to listen: %v", err)
-		}
+	fmt.Println("Starting gRPC server on :9090")
+	lis, err := net.Listen("tcp", "127.0.0.1:9090")
+	if err != nil {
+		log.Fatalf("failed to listen: %v", err)
+	}
 
-		s := grpc.NewServer()
-		api_v1.RegisterDemoServiceServer(s, srv)
+	s := grpc.NewServer()
+	api_v1.RegisterDemoServiceServer(s, srv)
 
-		reflection.Register(s)
+	// Register reflection service on gRPC server.
+	reflection.Register(s)
 
-		log.Println("gRPC server starting on :9090")
-		if err := s.Serve(lis); err != nil {
-			log.Fatalf("failed to serve: %v", err)
-		}
-	}()
+	log.Println("gRPC server starting on :9090")
+
+	// RUN THIS IN THE MAIN THREAD (Blocking)
+	if err := s.Serve(lis); err != nil {
+		log.Fatalf("failed to serve: %v", err)
+	}
 }
