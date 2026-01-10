@@ -5,6 +5,6 @@
 for i in {1995..2002}
 do
    wget http://prod.publicdata.landregistry.gov.uk.s3-website-eu-west-1.amazonaws.com/pp-$i.csv -O part_$i.csv
-   cat part_*.csv >> sample_big.csv
+   cat part_*.csv >> big.csv
    rm part_*.csv
 done

@@ -1,0 +1,73 @@
+#
+# use the below command to install envoy
+#  brew install envoy
+#
+# use the below command to start up envoy by loading this configuration, (envoy serves at port 10000
+#  envoy --service-node ingress --service-cluster ingress -c envoy-config.yaml --log-level info
+#
+# Envoy Doc (for transcoding plugin)
+#  https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/filters/http/grpc_json_transcoder/v3/transcoder.proto#envoy-v3-api-msg-extensions-filters-http-grpc-json-transcoder-v3-grpcjsontranscoder
+#
+
+admin:
+  access_log_path: /dev/null
+  address:
+    socket_address:
+      address: 0.0.0.0
+      port_value: 9100
+
+static_resources:
+  listeners:
+    address:
+      socket_address:
+        address: 0.0.0.0
+        port_value: 8888
+    filter_chains:
+      - filters:
+          - name: envoy.filters.network.http_connection_manager
+            typed_config:
+              "@type": type.googleapis.com/envoy.extensions.filters.network.http_connection_manager.v3.HttpConnectionManager
+              stat_prefix: ingress_http
+              codec_type: AUTO
+              route_config:
+                name: local_routes
+                virtual_hosts:
+                  - name: grpc_gateway
+                    domains:
+                      - "*"
+                    routes:
+                      - match:
+                          prefix: /cdaysdemo.v1.DemoService
+                        route:
+                          cluster: cdaysdemo
+              http_filters:
+                - name: envoy.filters.http.grpc_json_transcoder
+                  typed_config:
+                    "@type": type.googleapis.com/envoy.extensions.filters.http.grpc_json_transcoder.v3.GrpcJsonTranscoder
+                    proto_descriptor: proto.pb
+                    services:
+                      - cdaysdemo.v1.DemoService
+                    ignore_unknown_query_parameters: true
+                    print_options:
+                      add_whitespace: false
+                      always_print_primitive_fields: true
+                      always_print_enums_as_ints: false
+                      preserve_proto_field_names: false
+                    convert_grpc_status: true
+                - name: envoy.filters.http.router
+                  typed_config:
+                    "@type": type.googleapis.com/envoy.extensions.filters.http.router.v3.Router
+  clusters:
+    - name: cdaysdemo
+      type: STATIC
+      connect_timeout: 5s
+      http2_protocol_options: {}
+      load_assignment:
+        cluster_name: cdaysdemo
+        endpoints:
+          - lb_endpoints:
+              - endpoint:
+                  address:
+                    socket_address:
+                      address: 127.0.0.1
+                      port_value: 9090

@@ -74,8 +74,8 @@ func main() {
 	// Initialize server
 	srv := &server{}
 
-	fmt.Println("Starting gRPC server on :9090")
-	lis, err := net.Listen("tcp", "127.0.0.1:9090")
+	fmt.Println("Starting gRPC server on :9100")
+	lis, err := net.Listen("tcp", "127.0.0.1:9100")
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
@@ -86,7 +86,7 @@ func main() {
 	// Register reflection service on gRPC server.
 	reflection.Register(s)
 
-	log.Println("gRPC server starting on :9090")
+	log.Println("gRPC server starting on :9100")
 
 	// RUN THIS IN THE MAIN THREAD (Blocking)
 	if err := s.Serve(lis); err != nil {
