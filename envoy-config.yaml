@@ -9,19 +9,20 @@
 #  https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/filters/http/grpc_json_transcoder/v3/transcoder.proto#envoy-v3-api-msg-extensions-filters-http-grpc-json-transcoder-v3-grpcjsontranscoder
 #
 
+# Serves the admin UI for managing envoy
 admin:
   access_log_path: /dev/null
   address:
     socket_address:
       address: 0.0.0.0
-      port_value: 9100
+      port_value: 9000 # envoy admin interface port
 
 static_resources:
   listeners:
     address:
       socket_address:
         address: 0.0.0.0
-        port_value: 8888
+        port_value: 8888  # rest api at /v1/plain/small.csv or /v1/stream/big.csv
     filter_chains:
       - filters:
           - name: envoy.filters.network.http_connection_manager
@@ -70,4 +71,4 @@ static_resources:
                   address:
                     socket_address:
                       address: 127.0.0.1
-                      port_value: 9090
+                      port_value: 9090 # gRPC service port

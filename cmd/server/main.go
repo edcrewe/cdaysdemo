@@ -30,7 +30,7 @@ type server struct {
 func (s *server) GetCSVFile(ctx context.Context, req *api_v1.StringMessage) (*httpbody.HttpBody, error) {
 	csvData, err := EmbedFS.ReadFile(req.FileName)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("failed to read file: %s %v", req.FileName, err)
 	}
 	return &httpbody.HttpBody{
 		ContentType: "text/csv",
