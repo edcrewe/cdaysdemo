@@ -23,3 +23,4 @@ protoc -I=googleapis -I=protovalidate --proto_path=proto --go_out=./generated/go
 # Generate proto descriptor file for Envoy
 protoc -I=googleapis -I=protovalidate --proto_path=proto --include_imports      --descriptor_set_out=proto.pb csv.proto
 
+go mod vendor;go mod tidy
