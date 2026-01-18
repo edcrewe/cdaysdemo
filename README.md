@@ -16,7 +16,16 @@ This project demonstrates how to use Envoy's [gRPC-JSON transcoder](https://www.
     cd cdaysdemo
     ```
 
-2. **Generate the code user protobuf**
+2. **Install protoc and libs**
+
+    See https://protobuf.dev/installation/ for your enviorment.
+    Then install the generator libs.
+
+    ```sh
+    ./install_protoc.sh
+    ```
+
+3. **Generate the code user protobuf**
 
     Assuming you have recent Go installed on your laptop you can run generate.sh
 
@@ -28,8 +37,33 @@ This project demonstrates how to use Envoy's [gRPC-JSON transcoder](https://www.
     ./generate.sh
     ```
 
-3. **Test the REST endpoint**
+4. **Run up the gRPC server**
+
     ```sh
+    ./run_go.sh
+
+    Starting gRPC server on :9090
+    2026/01/18 16:07:04 gRPC server starting on :9090
+    ```
+
+    If you have a gRPC client such as Kreya you can now try out the endpoints
+
+5. **Run the Envoy Service**
+
+    ```sh
+    ./run_envoy.sh
+
+    [2026-01-18 16:08:21.448][24239152][debug][upstream] [source/common/upstream/cluster_manager_impl.cc:1506] membership update for TLS cluster cdaysdemo added 1 removed 0
+    [2026-01-18 16:08:21.448][24239121][info][main] [source/server/server.cc:1051] starting main dispatch loop
+    [2026-01-18 16:08:26.448][24239121][debug][main] [source/server/server.cc:246] flushing stats
+    [2026-01-18 16:08:31.449][24239121][debug][main] [source/server/server.cc:246] flushing stats
+    [2026-01-18 16:08:36.451][24239121][debug][main] [source/server/server.cc:246] flushing stats
+    [2026-01-18 16:08:41.452][24239121][debug][main] [source/server/server.cc:246] flushing stats
+    ```
+
+6. **Test the REST endpoint**
+    ```sh
+    curl http://localhost/v1/page/index.html
     curl -X POST http://localhost:8080/v1/example -d '{"name": "World"}'
     ```
 
