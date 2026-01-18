@@ -7,11 +7,30 @@ import "google/api/annotations.proto";
 import "google/api/httpbody.proto";
 import "buf/validate/validate.proto";
 
- message StringMessage {
-    string file_name = 1 [(buf.validate.field).required = true];
- }
+// Lets have html pages from proto for an index.html
+
+message GetPageRequest {
+  string web_page = 1;
+}
+
+// Here is a standard REST JSON response we might expect from transcoding
+
+//TODO
+
+
+// Add a file_name with validation, so we can return file content and stream it
+
+message StringMessage {
+  string file_name = 1 [(buf.validate.field).required = true];
+}
 
 service DemoService {
+  rpc GetWebPage(GetPageRequest) returns (google.api.HttpBody) {
+    option (google.api.http) = {
+      get: "/v1/page/{web_page}"
+    };
+  }
+
   rpc GetCSVFile(StringMessage) returns (google.api.HttpBody) {
     option (google.api.http) = {
         get : "/v1/plain/{file_name}"

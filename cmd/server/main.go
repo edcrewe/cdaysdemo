@@ -20,7 +20,17 @@ import (
 )
 
 type server struct {
-	api_v1.DemoServiceServer
+	api_v1.UnimplementedDemoServiceServer // fixes unimplemented errors
+}
+
+// GetWebPage returns a simple HTML page via gRPC as HttpBody
+func (s *server) GetWebPage(ctx context.Context, req *api_v1.GetPageRequest) (*httpbody.HttpBody, error) {
+	htmlContent := "<html><body><h1>Hello from gRPC!</h1><p>Demo index page transcoded via Envoy for <a href=\"https://github.com/edcrewe/cdaysdemo\">Container Days transcoding Demo repo</a></p></body></html>"
+
+	return &httpbody.HttpBody{
+		ContentType: "text/html",
+		Data:        []byte(htmlContent),
+	}, nil
 }
 
 // GetCSVFile returns a CSV file via gRPC as HttpBody

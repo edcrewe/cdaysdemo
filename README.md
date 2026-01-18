@@ -16,9 +16,16 @@ This project demonstrates how to use Envoy's [gRPC-JSON transcoder](https://www.
     cd cdaysdemo
     ```
 
-2. **Run the services**
+2. **Generate the code user protobuf**
+
+    Assuming you have recent Go installed on your laptop you can run generate.sh
+
+    Run generate creates a new clean generated folder
+    Gets the required extras for protobuf, annotations and http, plus the protovalidate
+    Runs the protoc commands to generate the Go code and the REST API code
+
     ```sh
-    docker-compose up
+    ./generate.sh
     ```
 
 3. **Test the REST endpoint**
