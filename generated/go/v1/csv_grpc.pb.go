@@ -12,6 +12,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -21,6 +22,10 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	DemoService_GetWebPage_FullMethodName    = "/cdaysdemo.v1.DemoService/GetWebPage"
+	DemoService_CreateWidget_FullMethodName  = "/cdaysdemo.v1.DemoService/CreateWidget"
+	DemoService_ListWidgets_FullMethodName   = "/cdaysdemo.v1.DemoService/ListWidgets"
+	DemoService_GetWidget_FullMethodName     = "/cdaysdemo.v1.DemoService/GetWidget"
+	DemoService_DeleteWidget_FullMethodName  = "/cdaysdemo.v1.DemoService/DeleteWidget"
 	DemoService_GetCSVFile_FullMethodName    = "/cdaysdemo.v1.DemoService/GetCSVFile"
 	DemoService_StreamCSVFile_FullMethodName = "/cdaysdemo.v1.DemoService/StreamCSVFile"
 )
@@ -29,8 +34,19 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DemoServiceClient interface {
+	// Get a home page GET /v1/page/index.html
 	GetWebPage(ctx context.Context, in *GetPageRequest, opts ...grpc.CallOption) (*httpbody.HttpBody, error)
+	// Create: POST /v1/widget
+	CreateWidget(ctx context.Context, in *Widget, opts ...grpc.CallOption) (*WidgetResponse, error)
+	// List: GET /v1/widget
+	ListWidgets(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*WidgetList, error)
+	// Get: GET /v1/widget/{id}
+	GetWidget(ctx context.Context, in *Widget, opts ...grpc.CallOption) (*Widget, error)
+	// Delete: DELETE /v1/widget/{id}
+	DeleteWidget(ctx context.Context, in *Widget, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// Get a small CSV file with normal return
 	GetCSVFile(ctx context.Context, in *StringMessage, opts ...grpc.CallOption) (*httpbody.HttpBody, error)
+	// get a big CSV file with stream
 	StreamCSVFile(ctx context.Context, in *StringMessage, opts ...grpc.CallOption) (grpc.ServerStreamingClient[httpbody.HttpBody], error)
 }
 
@@ -46,6 +62,46 @@ func (c *demoServiceClient) GetWebPage(ctx context.Context, in *GetPageRequest, 
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(httpbody.HttpBody)
 	err := c.cc.Invoke(ctx, DemoService_GetWebPage_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *demoServiceClient) CreateWidget(ctx context.Context, in *Widget, opts ...grpc.CallOption) (*WidgetResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(WidgetResponse)
+	err := c.cc.Invoke(ctx, DemoService_CreateWidget_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *demoServiceClient) ListWidgets(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*WidgetList, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(WidgetList)
+	err := c.cc.Invoke(ctx, DemoService_ListWidgets_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *demoServiceClient) GetWidget(ctx context.Context, in *Widget, opts ...grpc.CallOption) (*Widget, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Widget)
+	err := c.cc.Invoke(ctx, DemoService_GetWidget_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *demoServiceClient) DeleteWidget(ctx context.Context, in *Widget, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, DemoService_DeleteWidget_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -85,8 +141,19 @@ type DemoService_StreamCSVFileClient = grpc.ServerStreamingClient[httpbody.HttpB
 // All implementations must embed UnimplementedDemoServiceServer
 // for forward compatibility.
 type DemoServiceServer interface {
+	// Get a home page GET /v1/page/index.html
 	GetWebPage(context.Context, *GetPageRequest) (*httpbody.HttpBody, error)
+	// Create: POST /v1/widget
+	CreateWidget(context.Context, *Widget) (*WidgetResponse, error)
+	// List: GET /v1/widget
+	ListWidgets(context.Context, *emptypb.Empty) (*WidgetList, error)
+	// Get: GET /v1/widget/{id}
+	GetWidget(context.Context, *Widget) (*Widget, error)
+	// Delete: DELETE /v1/widget/{id}
+	DeleteWidget(context.Context, *Widget) (*emptypb.Empty, error)
+	// Get a small CSV file with normal return
 	GetCSVFile(context.Context, *StringMessage) (*httpbody.HttpBody, error)
+	// get a big CSV file with stream
 	StreamCSVFile(*StringMessage, grpc.ServerStreamingServer[httpbody.HttpBody]) error
 	mustEmbedUnimplementedDemoServiceServer()
 }
@@ -100,6 +167,18 @@ type UnimplementedDemoServiceServer struct{}
 
 func (UnimplementedDemoServiceServer) GetWebPage(context.Context, *GetPageRequest) (*httpbody.HttpBody, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetWebPage not implemented")
+}
+func (UnimplementedDemoServiceServer) CreateWidget(context.Context, *Widget) (*WidgetResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method CreateWidget not implemented")
+}
+func (UnimplementedDemoServiceServer) ListWidgets(context.Context, *emptypb.Empty) (*WidgetList, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListWidgets not implemented")
+}
+func (UnimplementedDemoServiceServer) GetWidget(context.Context, *Widget) (*Widget, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetWidget not implemented")
+}
+func (UnimplementedDemoServiceServer) DeleteWidget(context.Context, *Widget) (*emptypb.Empty, error) {
+	return nil, status.Error(codes.Unimplemented, "method DeleteWidget not implemented")
 }
 func (UnimplementedDemoServiceServer) GetCSVFile(context.Context, *StringMessage) (*httpbody.HttpBody, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetCSVFile not implemented")
@@ -146,6 +225,78 @@ func _DemoService_GetWebPage_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DemoService_CreateWidget_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Widget)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DemoServiceServer).CreateWidget(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DemoService_CreateWidget_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DemoServiceServer).CreateWidget(ctx, req.(*Widget))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DemoService_ListWidgets_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DemoServiceServer).ListWidgets(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DemoService_ListWidgets_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DemoServiceServer).ListWidgets(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DemoService_GetWidget_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Widget)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DemoServiceServer).GetWidget(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DemoService_GetWidget_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DemoServiceServer).GetWidget(ctx, req.(*Widget))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DemoService_DeleteWidget_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Widget)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DemoServiceServer).DeleteWidget(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DemoService_DeleteWidget_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DemoServiceServer).DeleteWidget(ctx, req.(*Widget))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DemoService_GetCSVFile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(StringMessage)
 	if err := dec(in); err != nil {
@@ -185,6 +336,22 @@ var DemoService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetWebPage",
 			Handler:    _DemoService_GetWebPage_Handler,
+		},
+		{
+			MethodName: "CreateWidget",
+			Handler:    _DemoService_CreateWidget_Handler,
+		},
+		{
+			MethodName: "ListWidgets",
+			Handler:    _DemoService_ListWidgets_Handler,
+		},
+		{
+			MethodName: "GetWidget",
+			Handler:    _DemoService_GetWidget_Handler,
+		},
+		{
+			MethodName: "DeleteWidget",
+			Handler:    _DemoService_DeleteWidget_Handler,
 		},
 		{
 			MethodName: "GetCSVFile",

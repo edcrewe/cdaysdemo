@@ -6,6 +6,7 @@ option go_package = "generated/go/cdaysdemo/v1";
 import "google/api/annotations.proto";
 import "google/api/httpbody.proto";
 import "buf/validate/validate.proto";
+import "google/protobuf/empty.proto";
 
 // Lets have html pages from proto for an index.html
 
@@ -13,30 +14,73 @@ message GetPageRequest {
   string web_page = 1;
 }
 
-// Here is a standard REST JSON response we might expect from transcoding
-
-//TODO
-
-
 // Add a file_name with validation, so we can return file content and stream it
 
 message StringMessage {
   string file_name = 1 [(buf.validate.field).required = true];
 }
 
+// Here is a standard REST JSON CRUD we might expect from transcoding
+
+message Widget {
+  int32 id = 1;
+  string name = 2;
+}
+
+message WidgetList {
+  repeated Widget widgets = 1;
+}
+
+message WidgetResponse {
+  string message = 1;
+  Widget widget = 2;
+}
+
 service DemoService {
+  // Get a home page GET /v1/page/index.html
   rpc GetWebPage(GetPageRequest) returns (google.api.HttpBody) {
     option (google.api.http) = {
       get: "/v1/page/{web_page}"
     };
   }
 
+  // Create: POST /v1/widget
+  rpc CreateWidget(Widget) returns (WidgetResponse) {
+    option (google.api.http) = {
+      post: "/v1/widget"
+      body: "*"
+    };
+  }
+
+  // List: GET /v1/widget
+  rpc ListWidgets(google.protobuf.Empty) returns (WidgetList) {
+    option (google.api.http) = {
+      get: "/v1/widget"
+    };
+  }
+
+  // Get: GET /v1/widget/{id}
+  rpc GetWidget(Widget) returns (Widget) {
+    option (google.api.http) = {
+      get: "/v1/widget/{id}"
+    };
+  }
+
+  // Delete: DELETE /v1/widget/{id}
+  rpc DeleteWidget(Widget) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/v1/widget/{id}"
+    };
+  }
+
+  // Get a small CSV file with normal return
   rpc GetCSVFile(StringMessage) returns (google.api.HttpBody) {
     option (google.api.http) = {
         get : "/v1/plain/{file_name}"
     }; 
   }
 
+  // get a big CSV file with stream
   rpc StreamCSVFile(StringMessage) returns (stream google.api.HttpBody) {
     option (google.api.http) = {
         get : "/v1/stream/{file_name}"
