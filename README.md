@@ -62,12 +62,10 @@ In the real world this would all be installed in K8s and probably using Istio me
     ```sh
     ./run_envoy.sh
 
+    ...
     [2026-01-18 16:08:21.448][24239152][debug][upstream] [source/common/upstream/cluster_manager_impl.cc:1506] membership update for TLS cluster cdaysdemo added 1 removed 0
     [2026-01-18 16:08:21.448][24239121][info][main] [source/server/server.cc:1051] starting main dispatch loop
     [2026-01-18 16:08:26.448][24239121][debug][main] [source/server/server.cc:246] flushing stats
-    [2026-01-18 16:08:31.449][24239121][debug][main] [source/server/server.cc:246] flushing stats
-    [2026-01-18 16:08:36.451][24239121][debug][main] [source/server/server.cc:246] flushing stats
-    [2026-01-18 16:08:41.452][24239121][debug][main] [source/server/server.cc:246] flushing stats
     ```
 
 6. **Test the REST endpoint**
