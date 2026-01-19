@@ -279,7 +279,7 @@ const file_demo_proto_rawDesc = "" +
 	"\awidgets\x18\x01 \x03(\v2\x14.cdaysdemo.v1.WidgetR\awidgets\"X\n" +
 	"\x0eWidgetResponse\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage\x12,\n" +
-	"\x06widget\x18\x02 \x01(\v2\x14.cdaysdemo.v1.WidgetR\x06widget2\x8b\x05\n" +
+	"\x06widget\x18\x02 \x01(\v2\x14.cdaysdemo.v1.WidgetR\x06widget2\x8a\x05\n" +
 	"\vDemoService\x12]\n" +
 	"\n" +
 	"GetWebPage\x12\x1c.cdaysdemo.v1.GetPageRequest\x1a\x14.google.api.HttpBody\"\x1b\x82\xd3\xe4\x93\x02\x15\x12\x13/v1/page/{web_page}\x12Y\n" +
@@ -288,9 +288,9 @@ const file_demo_proto_rawDesc = "" +
 	"\vListWidgets\x12\x16.google.protobuf.Empty\x1a\x18.cdaysdemo.v1.WidgetList\"\x12\x82\xd3\xe4\x93\x02\f\x12\n" +
 	"/v1/widget\x12P\n" +
 	"\tGetWidget\x12\x14.cdaysdemo.v1.Widget\x1a\x14.cdaysdemo.v1.Widget\"\x17\x82\xd3\xe4\x93\x02\x11\x12\x0f/v1/widget/{id}\x12U\n" +
-	"\fDeleteWidget\x12\x14.cdaysdemo.v1.Widget\x1a\x16.google.protobuf.Empty\"\x17\x82\xd3\xe4\x93\x02\x11*\x0f/v1/widget/{id}\x12^\n" +
+	"\fDeleteWidget\x12\x14.cdaysdemo.v1.Widget\x1a\x16.google.protobuf.Empty\"\x17\x82\xd3\xe4\x93\x02\x11*\x0f/v1/widget/{id}\x12]\n" +
 	"\n" +
-	"GetCSVFile\x12\x1b.cdaysdemo.v1.StringMessage\x1a\x14.google.api.HttpBody\"\x1d\x82\xd3\xe4\x93\x02\x17\x12\x15/v1/plain/{file_name}\x12d\n" +
+	"GetCSVFile\x12\x1b.cdaysdemo.v1.StringMessage\x1a\x14.google.api.HttpBody\"\x1c\x82\xd3\xe4\x93\x02\x16\x12\x14/v1/file/{file_name}\x12d\n" +
 	"\rStreamCSVFile\x12\x1b.cdaysdemo.v1.StringMessage\x1a\x14.google.api.HttpBody\"\x1e\x82\xd3\xe4\x93\x02\x18\x12\x16/v1/stream/{file_name}0\x01B\x1bZ\x19generated/go/cdaysdemo/v1b\x06proto3"
 
 var (

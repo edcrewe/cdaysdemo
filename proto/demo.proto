@@ -76,7 +76,7 @@ service DemoService {
   // Get a small CSV file with normal return
   rpc GetCSVFile(StringMessage) returns (google.api.HttpBody) {
     option (google.api.http) = {
-        get : "/v1/plain/{file_name}"
+        get : "/v1/file/{file_name}"
     }; 
   }
 

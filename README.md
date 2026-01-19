@@ -62,21 +62,30 @@ This project demonstrates how to use Envoy's [gRPC-JSON transcoder](https://www.
     ```
 
 6. **Test the REST endpoint**
+
     ```sh
-    Index page:
-    curl http://localhost/v1/index.html
+    # Index page:
+    curl http://localhost:8888/v1/index.html
 
-    Create: 
-    curl -X POST -d '{"id": 1, "name": "Sprocket"}' http://localhost:8080/v1/widget
+    # Create: 
+    curl -X POST -d '{"id": 1, "name": "Sprocket"}' http://localhost:8888/v1/widget
 
-    List:
-    curl http://localhost:8080/v1/widget
+    # List:
+    curl http://localhost:8888/v1/widget
 
-    Get Specific:
-    curl http://localhost:8080/v1/widget/1
+    # Get Specific:
+    curl http://localhost:8888/v1/widget/1
 
-    Delete:
-    curl -X DELETE http://localhost:8080/v1/widget/1
+    # Delete:
+    curl -X DELETE http://localhost:8888/v1/widget/1
+
+    # Get File
+    curl http://localhost:8888/v1/file/small.csv
+
+    # Create a big CSV file over 1Gb to demo
+    cmd/server/get_big_csv.sh
+    # Stream a Big File
+    curl http://localhost:8888/v1/stream/big.csv
     ```
 
 ## Resources
