@@ -64,7 +64,7 @@ This project demonstrates how to use Envoy's [gRPC-JSON transcoder](https://www.
 6. **Test the REST endpoint**
     ```sh
     Index page:
-    curl http://localhost/v1/page/index.html
+    curl http://localhost/v1/index.html
 
     Create: 
     curl -X POST -d '{"id": 1, "name": "Sprocket"}' http://localhost:8080/v1/widget
