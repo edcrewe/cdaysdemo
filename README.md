@@ -8,6 +8,12 @@ This project demonstrates how to use Envoy's [gRPC-JSON transcoder](https://www.
 - Envoy proxy configuration for JSON transcoding
 - Example REST and gRPC requests
 
+Everything is run locally (rather than via a docker compose) - to make it clear how everything is installed and generated. Also to make it easy to edit / break things, tail the servers, and see what is going on.
+
+You will need a laptop with Go installed.
+
+In the real world this would all be installed in K8s and probably using Istio mesh rather than a single Envoy server.
+
 ## Getting Started
 
 1. **Clone the repository**
@@ -49,6 +55,9 @@ This project demonstrates how to use Envoy's [gRPC-JSON transcoder](https://www.
     If you have a gRPC client such as Kreya you can now try out the endpoints
 
 5. **Run the Envoy Service**
+
+    Install envoy on your laptop
+    https://www.envoyproxy.io/docs/envoy/latest/start/install
 
     ```sh
     ./run_envoy.sh
