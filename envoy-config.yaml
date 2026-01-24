@@ -23,6 +23,8 @@ static_resources:
       socket_address:
         address: 0.0.0.0
         port_value: 8888  # rest api at /v1/plain/small.csv or /v1/stream/big.csv
+    # increase Listener level buffer for streaming
+    per_connection_buffer_limit_bytes: 2147483648
     filter_chains:
       - filters:
           - name: envoy.filters.network.http_connection_manager
@@ -60,8 +62,10 @@ static_resources:
                     "@type": type.googleapis.com/envoy.extensions.filters.http.router.v3.Router
   clusters:
     - name: cdaysdemo
+      # Increase Cluster level buffer for streaming
+      per_connection_buffer_limit_bytes: 2147483648
       type: STATIC
-      connect_timeout: 5s
+      connect_timeout: 600s
       http2_protocol_options: {}
       load_assignment:
         cluster_name: cdaysdemo
