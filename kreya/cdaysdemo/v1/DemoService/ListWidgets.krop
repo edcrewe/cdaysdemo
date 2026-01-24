@@ -1,0 +1,13 @@
+{
+  "details": {
+    "methodFqn": "cdaysdemo.v1.DemoService.ListWidgets"
+  },
+  "requests": [
+    {
+      "location": "ListWidgets-request.json"
+    }
+  ],
+  "operationType": "unary",
+  "invokerName": "grpc",
+  "importStreamId": "81ce47b1-5489-49af-9f2a-caa79e999fb3"
+}

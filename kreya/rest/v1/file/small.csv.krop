@@ -1,0 +1,15 @@
+{
+  "details": {
+    "endpoint": "http://localhost:8888",
+    "path": "/v1/file/small.csv",
+    "method": "GET"
+  },
+  "requests": [
+    {
+      "contentType": "none"
+    }
+  ],
+  "operationType": "unary",
+  "invokerName": "rest",
+  "typeHint": "GET"
+}

@@ -1,0 +1,24 @@
+{
+  "details": {
+    "path": "/v1/widget",
+    "method": "POST",
+    "queryParams": [
+      {
+        "key": "id",
+        "value": "234"
+      },
+      {
+        "key": "name",
+        "value": "foobar"
+      }
+    ]
+  },
+  "requests": [
+    {
+      "contentType": "none"
+    }
+  ],
+  "operationType": "unary",
+  "invokerName": "rest",
+  "typeHint": "POST"
+}

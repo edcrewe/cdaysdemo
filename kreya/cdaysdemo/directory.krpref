@@ -1,0 +1,13 @@
+{
+  "settings": [
+    {
+      "options": {
+        "rest": {
+          "endpoint": "localhost:8888",
+          "pathParams": [],
+          "disableServerCertificateValidation": true
+        }
+      }
+    }
+  ]
+}

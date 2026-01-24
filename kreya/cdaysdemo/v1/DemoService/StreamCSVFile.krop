@@ -1,0 +1,13 @@
+{
+  "details": {
+    "methodFqn": "cdaysdemo.v1.DemoService.StreamCSVFile"
+  },
+  "requests": [
+    {
+      "location": "StreamCSVFile-request.json"
+    }
+  ],
+  "operationType": "serverStreaming",
+  "invokerName": "grpc",
+  "importStreamId": "81ce47b1-5489-49af-9f2a-caa79e999fb3"
+}

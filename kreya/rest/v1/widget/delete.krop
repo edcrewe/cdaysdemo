@@ -1,0 +1,14 @@
+{
+  "details": {
+    "path": "/v1/widget/134",
+    "method": "DELETE"
+  },
+  "requests": [
+    {
+      "contentType": "none"
+    }
+  ],
+  "operationType": "unary",
+  "invokerName": "rest",
+  "typeHint": "DELETE"
+}
