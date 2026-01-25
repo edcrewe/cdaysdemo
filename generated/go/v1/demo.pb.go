@@ -69,50 +69,6 @@ func (x *GetPageRequest) GetWebPage() string {
 	return ""
 }
 
-type StringMessage struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	FileName      string                 `protobuf:"bytes,1,opt,name=file_name,json=fileName,proto3" json:"file_name,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *StringMessage) Reset() {
-	*x = StringMessage{}
-	mi := &file_demo_proto_msgTypes[1]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *StringMessage) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*StringMessage) ProtoMessage() {}
-
-func (x *StringMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_demo_proto_msgTypes[1]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use StringMessage.ProtoReflect.Descriptor instead.
-func (*StringMessage) Descriptor() ([]byte, []int) {
-	return file_demo_proto_rawDescGZIP(), []int{1}
-}
-
-func (x *StringMessage) GetFileName() string {
-	if x != nil {
-		return x.FileName
-	}
-	return ""
-}
-
 type Widget struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	Id    int32                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -124,7 +80,7 @@ type Widget struct {
 
 func (x *Widget) Reset() {
 	*x = Widget{}
-	mi := &file_demo_proto_msgTypes[2]
+	mi := &file_demo_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -136,7 +92,7 @@ func (x *Widget) String() string {
 func (*Widget) ProtoMessage() {}
 
 func (x *Widget) ProtoReflect() protoreflect.Message {
-	mi := &file_demo_proto_msgTypes[2]
+	mi := &file_demo_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -149,7 +105,7 @@ func (x *Widget) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Widget.ProtoReflect.Descriptor instead.
 func (*Widget) Descriptor() ([]byte, []int) {
-	return file_demo_proto_rawDescGZIP(), []int{2}
+	return file_demo_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *Widget) GetId() int32 {
@@ -175,7 +131,7 @@ type WidgetList struct {
 
 func (x *WidgetList) Reset() {
 	*x = WidgetList{}
-	mi := &file_demo_proto_msgTypes[3]
+	mi := &file_demo_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -187,7 +143,7 @@ func (x *WidgetList) String() string {
 func (*WidgetList) ProtoMessage() {}
 
 func (x *WidgetList) ProtoReflect() protoreflect.Message {
-	mi := &file_demo_proto_msgTypes[3]
+	mi := &file_demo_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -200,7 +156,7 @@ func (x *WidgetList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WidgetList.ProtoReflect.Descriptor instead.
 func (*WidgetList) Descriptor() ([]byte, []int) {
-	return file_demo_proto_rawDescGZIP(), []int{3}
+	return file_demo_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *WidgetList) GetWidgets() []*Widget {
@@ -220,7 +176,7 @@ type WidgetResponse struct {
 
 func (x *WidgetResponse) Reset() {
 	*x = WidgetResponse{}
-	mi := &file_demo_proto_msgTypes[4]
+	mi := &file_demo_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -232,7 +188,7 @@ func (x *WidgetResponse) String() string {
 func (*WidgetResponse) ProtoMessage() {}
 
 func (x *WidgetResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_demo_proto_msgTypes[4]
+	mi := &file_demo_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -245,7 +201,7 @@ func (x *WidgetResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WidgetResponse.ProtoReflect.Descriptor instead.
 func (*WidgetResponse) Descriptor() ([]byte, []int) {
-	return file_demo_proto_rawDescGZIP(), []int{4}
+	return file_demo_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *WidgetResponse) GetMessage() string {
@@ -262,6 +218,50 @@ func (x *WidgetResponse) GetWidget() *Widget {
 	return nil
 }
 
+type StringMessage struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	FileName      string                 `protobuf:"bytes,1,opt,name=file_name,json=fileName,proto3" json:"file_name,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *StringMessage) Reset() {
+	*x = StringMessage{}
+	mi := &file_demo_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *StringMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StringMessage) ProtoMessage() {}
+
+func (x *StringMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_demo_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StringMessage.ProtoReflect.Descriptor instead.
+func (*StringMessage) Descriptor() ([]byte, []int) {
+	return file_demo_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *StringMessage) GetFileName() string {
+	if x != nil {
+		return x.FileName
+	}
+	return ""
+}
+
 var File_demo_proto protoreflect.FileDescriptor
 
 const file_demo_proto_rawDesc = "" +
@@ -269,9 +269,7 @@ const file_demo_proto_rawDesc = "" +
 	"\n" +
 	"demo.proto\x12\fcdaysdemo.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x19google/api/httpbody.proto\x1a\x1bbuf/validate/validate.proto\x1a\x1bgoogle/protobuf/empty.proto\"+\n" +
 	"\x0eGetPageRequest\x12\x19\n" +
-	"\bweb_page\x18\x01 \x01(\tR\awebPage\"4\n" +
-	"\rStringMessage\x12#\n" +
-	"\tfile_name\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\bfileName\"8\n" +
+	"\bweb_page\x18\x01 \x01(\tR\awebPage\"8\n" +
 	"\x06Widget\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x05R\x02id\x12\x1e\n" +
 	"\x04name\x18\x02 \x01(\tB\n" +
@@ -281,7 +279,9 @@ const file_demo_proto_rawDesc = "" +
 	"\awidgets\x18\x01 \x03(\v2\x14.cdaysdemo.v1.WidgetR\awidgets\"X\n" +
 	"\x0eWidgetResponse\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage\x12,\n" +
-	"\x06widget\x18\x02 \x01(\v2\x14.cdaysdemo.v1.WidgetR\x06widget2\x8a\x05\n" +
+	"\x06widget\x18\x02 \x01(\v2\x14.cdaysdemo.v1.WidgetR\x06widget\"4\n" +
+	"\rStringMessage\x12#\n" +
+	"\tfile_name\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\bfileName2\x8a\x05\n" +
 	"\vDemoService\x12]\n" +
 	"\n" +
 	"GetWebPage\x12\x1c.cdaysdemo.v1.GetPageRequest\x1a\x14.google.api.HttpBody\"\x1b\x82\xd3\xe4\x93\x02\x15\x12\x13/v1/page/{web_page}\x12Y\n" +
@@ -310,27 +310,27 @@ func file_demo_proto_rawDescGZIP() []byte {
 var file_demo_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_demo_proto_goTypes = []any{
 	(*GetPageRequest)(nil),    // 0: cdaysdemo.v1.GetPageRequest
-	(*StringMessage)(nil),     // 1: cdaysdemo.v1.StringMessage
-	(*Widget)(nil),            // 2: cdaysdemo.v1.Widget
-	(*WidgetList)(nil),        // 3: cdaysdemo.v1.WidgetList
-	(*WidgetResponse)(nil),    // 4: cdaysdemo.v1.WidgetResponse
+	(*Widget)(nil),            // 1: cdaysdemo.v1.Widget
+	(*WidgetList)(nil),        // 2: cdaysdemo.v1.WidgetList
+	(*WidgetResponse)(nil),    // 3: cdaysdemo.v1.WidgetResponse
+	(*StringMessage)(nil),     // 4: cdaysdemo.v1.StringMessage
 	(*emptypb.Empty)(nil),     // 5: google.protobuf.Empty
 	(*httpbody.HttpBody)(nil), // 6: google.api.HttpBody
 }
 var file_demo_proto_depIdxs = []int32{
-	2, // 0: cdaysdemo.v1.WidgetList.widgets:type_name -> cdaysdemo.v1.Widget
-	2, // 1: cdaysdemo.v1.WidgetResponse.widget:type_name -> cdaysdemo.v1.Widget
+	1, // 0: cdaysdemo.v1.WidgetList.widgets:type_name -> cdaysdemo.v1.Widget
+	1, // 1: cdaysdemo.v1.WidgetResponse.widget:type_name -> cdaysdemo.v1.Widget
 	0, // 2: cdaysdemo.v1.DemoService.GetWebPage:input_type -> cdaysdemo.v1.GetPageRequest
-	2, // 3: cdaysdemo.v1.DemoService.CreateWidget:input_type -> cdaysdemo.v1.Widget
+	1, // 3: cdaysdemo.v1.DemoService.CreateWidget:input_type -> cdaysdemo.v1.Widget
 	5, // 4: cdaysdemo.v1.DemoService.ListWidgets:input_type -> google.protobuf.Empty
-	2, // 5: cdaysdemo.v1.DemoService.GetWidget:input_type -> cdaysdemo.v1.Widget
-	2, // 6: cdaysdemo.v1.DemoService.DeleteWidget:input_type -> cdaysdemo.v1.Widget
-	1, // 7: cdaysdemo.v1.DemoService.GetCSVFile:input_type -> cdaysdemo.v1.StringMessage
-	1, // 8: cdaysdemo.v1.DemoService.StreamCSVFile:input_type -> cdaysdemo.v1.StringMessage
+	1, // 5: cdaysdemo.v1.DemoService.GetWidget:input_type -> cdaysdemo.v1.Widget
+	1, // 6: cdaysdemo.v1.DemoService.DeleteWidget:input_type -> cdaysdemo.v1.Widget
+	4, // 7: cdaysdemo.v1.DemoService.GetCSVFile:input_type -> cdaysdemo.v1.StringMessage
+	4, // 8: cdaysdemo.v1.DemoService.StreamCSVFile:input_type -> cdaysdemo.v1.StringMessage
 	6, // 9: cdaysdemo.v1.DemoService.GetWebPage:output_type -> google.api.HttpBody
-	4, // 10: cdaysdemo.v1.DemoService.CreateWidget:output_type -> cdaysdemo.v1.WidgetResponse
-	3, // 11: cdaysdemo.v1.DemoService.ListWidgets:output_type -> cdaysdemo.v1.WidgetList
-	2, // 12: cdaysdemo.v1.DemoService.GetWidget:output_type -> cdaysdemo.v1.Widget
+	3, // 10: cdaysdemo.v1.DemoService.CreateWidget:output_type -> cdaysdemo.v1.WidgetResponse
+	2, // 11: cdaysdemo.v1.DemoService.ListWidgets:output_type -> cdaysdemo.v1.WidgetList
+	1, // 12: cdaysdemo.v1.DemoService.GetWidget:output_type -> cdaysdemo.v1.Widget
 	5, // 13: cdaysdemo.v1.DemoService.DeleteWidget:output_type -> google.protobuf.Empty
 	6, // 14: cdaysdemo.v1.DemoService.GetCSVFile:output_type -> google.api.HttpBody
 	6, // 15: cdaysdemo.v1.DemoService.StreamCSVFile:output_type -> google.api.HttpBody

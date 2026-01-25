@@ -97,14 +97,18 @@ In the real world this would all be installed in K8s and probably using Istio me
 
 ## Demo
 
+Prep rm -fr generated widgets.json
+
 1. Introduce the cdaysdemo repository - list the files in the folder
-2. Mention installing go and envoy, run install_protoc, emacs proto/demo.proto, run generate.sh and show the generated folder
-3. run_grpc.go - introduce kreya (postman or insomnia) - get the index page in grpc in Kreya 
-4. run_envoy.go - helloworld show page in kreya then (switch to browser) to prove it comes back as a page.
-5. back to kreya move on to widgets - classic JSON crud cycle
-6. Show what happens when try to create short name widget - validation?
-7. Show we can use transcoding for anything, eg. a file 
-8. Then to streaming - showing the Envoy log as the big file is downloaded and stuck back together.
+2. Mention installing go and envoy, run install_protoc, emacs proto/demo.proto, talk through it.
+3. run generate.sh and show the generated folder, cd generated && find *
+4. run_grpc.go - introduce kreya (postman or insomnia) - get the index page in grpc in Kreya
+5. run_envoy.go - helloworld show page in kreya then (switch to browser) to prove it comes back as a page.
+6. emacs envoy-config.yaml
+7. back to kreya rest - move on to widgets - classic JSON crud cycle - create a widget
+8. Show what happens when try to create short name widget - validation?
+9. Show we can use transcoding for anything, eg. a file 
+10. Then to streaming - showing the Envoy log as the big file is downloaded and stuck back together.
 
 ## Resources
 
