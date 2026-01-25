@@ -24,7 +24,11 @@ message StringMessage {
 
 message Widget {
   int32 id = 1;
-  string name = 2;
+  // Validation equires the field to be present AND have a length > 4
+  string name = 2 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.min_len = 5 
+  ];
 }
 
 message WidgetList {

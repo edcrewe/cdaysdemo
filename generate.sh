@@ -18,9 +18,9 @@ rm protovalidate.tar.gz
 rm -fr protovalidate-testing
 
 # Generate gRPC service code
-protoc -I=googleapis -I=protovalidate --proto_path=proto --go_out=./generated/go/v1  --go_opt paths=source_relative --go-grpc_out=./generated/go/v1 --go-grpc_opt paths=source_relative demo.proto
+protoc -I=googleapis -I=protovalidate --proto_path=proto --go_out=./generated/go/v1  --go_opt paths=source_relative --go-grpc_out=./generated/go/v1 --go-grpc_opt paths=source_relative proto/demo.proto
 
 # Generate proto descriptor file for Envoy
-protoc -I=googleapis -I=protovalidate --proto_path=proto --include_imports      --descriptor_set_out=proto.pb demo.proto
+protoc -I=googleapis -I=protovalidate --proto_path=proto --include_imports      --descriptor_set_out=proto.pb proto/demo.proto
 
 go mod vendor;go mod tidy

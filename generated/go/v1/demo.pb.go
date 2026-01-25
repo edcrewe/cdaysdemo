@@ -114,9 +114,10 @@ func (x *StringMessage) GetFileName() string {
 }
 
 type Widget struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int32                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	Id    int32                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	// Validation equires the field to be present AND have a length > 4
+	Name          string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -270,10 +271,11 @@ const file_demo_proto_rawDesc = "" +
 	"\x0eGetPageRequest\x12\x19\n" +
 	"\bweb_page\x18\x01 \x01(\tR\awebPage\"4\n" +
 	"\rStringMessage\x12#\n" +
-	"\tfile_name\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\bfileName\",\n" +
+	"\tfile_name\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\bfileName\"8\n" +
 	"\x06Widget\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x05R\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\"<\n" +
+	"\x02id\x18\x01 \x01(\x05R\x02id\x12\x1e\n" +
+	"\x04name\x18\x02 \x01(\tB\n" +
+	"\xbaH\a\xc8\x01\x01r\x02\x10\x05R\x04name\"<\n" +
 	"\n" +
 	"WidgetList\x12.\n" +
 	"\awidgets\x18\x01 \x03(\v2\x14.cdaysdemo.v1.WidgetR\awidgets\"X\n" +

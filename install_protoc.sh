@@ -8,3 +8,4 @@ go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
 
 # Plugin for gRPC service code
 go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+

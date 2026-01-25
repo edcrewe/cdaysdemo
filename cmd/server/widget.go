@@ -6,6 +6,7 @@ import (
 	"os"
 	"sync"
 
+	"buf.build/go/protovalidate"
 	api_v1 "github.com/edcrewe/cdaysdemo/generated/go/v1"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -15,6 +16,7 @@ import (
 const widgetDb = "widgets.json"
 
 var mu sync.Mutex
+var v, _ = protovalidate.New()
 
 // Helper to load widgets from file
 func loadWidgets() ([]*api_v1.Widget, error) {
@@ -40,6 +42,11 @@ func saveWidgets(widgets []*api_v1.Widget) error {
 }
 
 func (s *server) CreateWidget(ctx context.Context, req *api_v1.Widget) (*api_v1.WidgetResponse, error) {
+	if err := v.Validate(req); err != nil {
+		// protovalidate returns a 400 Bad Request to the client
+		return nil, status.Errorf(codes.InvalidArgument, "Validation failed: %v", err)
+	}
+
 	mu.Lock()
 	defer mu.Unlock()
 
