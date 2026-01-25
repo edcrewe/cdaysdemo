@@ -2,7 +2,7 @@
 # use the below command to install envoy
 #  brew install envoy
 #
-# use the below command to start up envoy by loading this configuration, (envoy serves at port 10000
+# use the below command to start up envoy by loading this configuration, (envoy serves at port 8888
 #  envoy --service-node ingress --service-cluster ingress -c envoy-config.yaml --log-level info
 #
 # Envoy Doc (for transcoding plugin)
@@ -22,7 +22,7 @@ static_resources:
     address:
       socket_address:
         address: 0.0.0.0
-        port_value: 8888  # rest api at /v1/plain/small.csv or /v1/stream/big.csv
+        port_value: 8888  # rest api
     # increase Listener level buffer for streaming
     per_connection_buffer_limit_bytes: 2147483648
     filter_chains:
@@ -65,7 +65,7 @@ static_resources:
       # Increase Cluster level buffer for streaming
       per_connection_buffer_limit_bytes: 2147483648
       type: STATIC
-      connect_timeout: 600s
+      connect_timeout: 6s
       http2_protocol_options: {}
       load_assignment:
         cluster_name: cdaysdemo

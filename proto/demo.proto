@@ -8,16 +8,10 @@ import "google/api/httpbody.proto";
 import "buf/validate/validate.proto";
 import "google/protobuf/empty.proto";
 
-// Lets have html pages from proto for an index.html
+// Lets have html pages from proto with an index.html
 
 message GetPageRequest {
   string web_page = 1;
-}
-
-// Add a file_name with validation, so we can return file content and stream it
-
-message StringMessage {
-  string file_name = 1 [(buf.validate.field).required = true];
 }
 
 // Here is a standard REST JSON CRUD we might expect from transcoding
@@ -39,6 +33,13 @@ message WidgetResponse {
   string message = 1;
   Widget widget = 2;
 }
+
+// Add a message for the file handling demo methods
+
+message StringMessage {
+  string file_name = 1 [(buf.validate.field).required = true];
+}
+
 
 service DemoService {
   // Get a home page GET /v1/page/index.html

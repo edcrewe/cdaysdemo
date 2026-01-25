@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Once Golang is installed eg. 1.24.11, then install envoy see README
+# Now install protoc...
+
 echo "See https://protobuf.dev/installation/ for your enviorment."
 
 echo "This script installs the protoc generators in the default Go assuming protobuf is already installed."
